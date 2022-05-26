@@ -28,3 +28,19 @@ class Array:
         file.write(f"Записано {self.size} фильмов\n\n")
         for i in range(self.size):
             self.content[i].record_to_file(file)
+
+    def only_one_type_record_to_file(self, file, type):
+        if type == 0:
+            self.record_to_file(file)
+            return
+        num = 0
+        for i in range(self.size):
+            if self.content[i].type == type:
+                self.content[i].record_to_file(file)
+                num += 1
+        if num == 1:
+            file.write(f"\nЗаписан {num} фильм\n")
+        if num > 1 and num <= 4:
+            file.write(f"\nЗаписано {num} фильма\n")
+        if num >= 5:
+            file.write(f"\nЗаписано {num} фильмов\n")

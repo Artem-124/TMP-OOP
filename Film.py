@@ -3,6 +3,7 @@ from enum import Enum
 class Film:
     def __init__(self):
         self.title = ''
+        self.type = 0
 
     @staticmethod
     def get_from_file(type, file):
@@ -10,6 +11,7 @@ class Film:
             film = Feature() 
         if type == 2:
             film = Cartoon()
+        film.type = type
         film.read_from_file(file) 
         return film
     
