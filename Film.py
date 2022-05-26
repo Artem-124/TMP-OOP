@@ -16,6 +16,13 @@ class Film:
     def record_to_file(self, file):
         pass
    
+    def number_of_voves(self):
+        voves = 'аеёиоуыэюя'
+        num = 0
+        for letter in self.title:
+            if letter in voves:
+                num += 1
+        return num 
 
 class Feature(Film):
     def __init__(self):
@@ -30,6 +37,7 @@ class Feature(Film):
         file.write(self.title)
         file.write("Художественный фильм\n")
         file.write(f"Режиссер: {self.director}")
+        file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
         file.write('\n') 
 
 class Cartoon(Film):
@@ -50,6 +58,7 @@ class Cartoon(Film):
             file.write("Кукольный\n")
         if self.wayToCreate == wayToCreate.plasticine:
             file.write("Пластилиновый\n")
+        file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
         file.write('\n') 
 
 class wayToCreate(Enum):
