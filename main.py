@@ -10,7 +10,7 @@ else:
     outfile = sys.argv[2]
 
 infile = open(infile, 'r', encoding = "utf-8")
-a = Array(10)
+a = Array(12)
 a.fill(infile)
 print(f"В контейнер записано {a.size} фильмов\n")
 infile.close()

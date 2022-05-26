@@ -1,42 +1,56 @@
 from enum import Enum
 
 class Film:
-    def __init__(self, type):
+    def __init__(self):
         self.title = ''
-        self.type = type
-        self.void = None
 
-    def get_from_file(self, file):
+    @staticmethod
+    def get_from_file(type, file):
+        if type == 1:
+            film = Feature() 
+        if type == 2:
+            film = Cartoon()
+        film.read_from_file(file) 
+        return film
+    
+    def record_to_file(self, file):
+        pass
+   
+
+class Feature(Film):
+    def __init__(self):
+        super().__init__()
+        self.director = ""
+
+    def read_from_file(self, file):
         self.title = file.readline()
-        if self.type == 1:
-            self.void = Feature()
-            self.director = file.readline()
-        if self.type == 2:
-            self.void = Cartoon()
-            self.wayToCreate = wayToCreate(int(file.readline()))
+        self.director = file.readline()
 
     def record_to_file(self, file):
         file.write(self.title)
-        if self.type == 1:
-            file.write("Художественный фильм\n")
-            file.write(f"Режиссер: {self.director}")
-        if self.type == 2:
-            file.write("Мультфильм\n")
-            if self.wayToCreate == wayToCreate.drawn:
-                file.write("Рисованный\n")
-            if self.wayToCreate == wayToCreate.puppet:
-                file.write("Кукольный\n")
-            if self.wayToCreate == wayToCreate.plasticine:
-                file.write("Пластилиновый\n")    
-        file.write('\n')     
+        file.write("Художественный фильм\n")
+        file.write(f"Режиссер: {self.director}")
+        file.write('\n') 
 
-class Feature:
+class Cartoon(Film):
     def __init__(self):
-        self.director = ""
-
-class Cartoon:
-    def __init__(self):
+        super().__init__()
         self.wayToCreate = None
+
+    def read_from_file(self, file):
+        self.title = file.readline()
+        self.wayToCreate = wayToCreate(int(file.readline()))
+
+    def record_to_file(self, file):
+        file.write(self.title)
+        file.write("Мультфильм\n")
+        if self.wayToCreate == wayToCreate.drawn:
+            file.write("Рисованный\n")
+        if self.wayToCreate == wayToCreate.puppet:
+            file.write("Кукольный\n")
+        if self.wayToCreate == wayToCreate.plasticine:
+            file.write("Пластилиновый\n")
+        file.write('\n') 
 
 class wayToCreate(Enum):
     drawn = 1

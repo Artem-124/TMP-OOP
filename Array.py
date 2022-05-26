@@ -20,8 +20,7 @@ class Array:
     def fill(self, file):
         type = file.readline()
         while type != '' and type != '\n':
-            film = Film(int(type))
-            film.get_from_file(file)
+            film = Film.get_from_file(int(type), file)
             self.append(film)
             type = file.readline()
 
