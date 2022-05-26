@@ -14,6 +14,7 @@ a = Array(12)
 a.fill(infile)
 print(f"В контейнер записано {a.size} фильмов\n")
 infile.close()
+a.sort()
 
 outfile = open(outfile, 'w', encoding = "utf-8")
 a.record_to_file(outfile)

@@ -28,3 +28,9 @@ class Array:
         file.write(f"Записано {self.size} фильмов\n\n")
         for i in range(self.size):
             self.content[i].record_to_file(file)
+
+    def sort(self):
+        for j in range(1, self.size):
+            for i in range(self.size - j):
+                if self.content[i].number_of_voves() > self.content[i + 1].number_of_voves():
+                    self.content[i], self.content[i + 1] = self.content[i + 1], self.content[i]
