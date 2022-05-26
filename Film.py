@@ -3,6 +3,7 @@ from enum import Enum
 class Film:
     def __init__(self):
         self.title = ''
+        self.country = ''
 
     @staticmethod
     def get_from_file(type, file):
@@ -24,11 +25,13 @@ class Feature(Film):
 
     def read_from_file(self, file):
         self.title = file.readline()
+        self.country = file.readline()
         self.director = file.readline()
 
     def record_to_file(self, file):
         file.write(self.title)
         file.write("Художественный фильм\n")
+        file.write(f"Страна: {self.country}")
         file.write(f"Режиссер: {self.director}")
         file.write('\n') 
 
@@ -39,11 +42,13 @@ class Cartoon(Film):
 
     def read_from_file(self, file):
         self.title = file.readline()
+        self.country = file.readline()
         self.wayToCreate = wayToCreate(int(file.readline()))
 
     def record_to_file(self, file):
         file.write(self.title)
         file.write("Мультфильм\n")
+        file.write(f"Страна: {self.country}")
         if self.wayToCreate == wayToCreate.drawn:
             file.write("Рисованный\n")
         if self.wayToCreate == wayToCreate.puppet:
