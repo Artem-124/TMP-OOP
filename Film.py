@@ -4,6 +4,7 @@ class Film:
     def __init__(self):
         self.title = ''
         self.country = ''
+        self.type = 0
 
     @staticmethod
     def get_from_file(type, file):
@@ -13,6 +14,7 @@ class Film:
             film = Cartoon()
         if type == 3:
             film = Doсumentary()
+        film.type = type
         film.read_from_file(file) 
         return film
     

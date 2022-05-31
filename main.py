@@ -17,6 +17,6 @@ infile.close()
 a.sort()
 
 outfile = open(outfile, 'w', encoding = "utf-8")
-a.record_to_file(outfile)
+a.only_one_type_record_to_file(outfile, 2) #0 - вывод всех типов
 outfile.close()
 a.clear()
