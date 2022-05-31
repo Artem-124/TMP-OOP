@@ -14,9 +14,23 @@ a = Array(12)
 a.fill(infile)
 print(f"В контейнер записано {a.size} фильмов\n")
 infile.close()
-a.sort()
 
 outfile = open(outfile, 'w', encoding = "utf-8")
+outfile.write('    ╔════════════════════╗\n')
+outfile.write('    ║ Исходный контейнер ║\n')
+outfile.write('    ╚════════════════════╝\n\n')
+a.record_to_file(outfile)
+
+a.sort()
+outfile.write('    ╔═══════════════════════════╗\n')
+outfile.write('    ║ Отсортированный контейнер ║\n')
+outfile.write('    ╚═══════════════════════════╝\n\n')
+a.record_to_file(outfile)
+
+outfile.write('    ╔═════════════════════════════════╗\n')
+outfile.write('    ║ Отфильтрованныйванный контейнер ║\n')
+outfile.write('    ╚═════════════════════════════════╝\n\n')
 a.only_one_type_record_to_file(outfile, 2) #0 - вывод всех типов
 outfile.close()
+
 a.clear()
