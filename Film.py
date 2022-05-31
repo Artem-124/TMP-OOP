@@ -25,15 +25,16 @@ class Film:
     def record_to_file_general(self, file):
         file.write(self.title)
         file.write(f"Страна: {self.country}")
-        file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
+        file.write(f"Количество гласных в названии: {self.number_of_vowels()}\n")
 
-    def number_of_voves(self):
-        voves = 'аеёиоуыэюя'
+    def number_of_vowels(self):
+        voves = 'аеёиоуыэюяaeiouy'
         num = 0
         for letter in self.title:
-            if letter in voves:
+            if letter.lower() in voves:
                 num += 1
         return num      
+
 
 class Feature(Film):
     def __init__(self):
@@ -50,25 +51,27 @@ class Feature(Film):
         file.write(f"Режиссер: {self.director}")
         file.write('\n') 
 
+
 class Cartoon(Film):
     def __init__(self):
         super().__init__()
-        self.wayToCreate = None
+        self.way_to_create = None
 
     def read_from_file(self, file):
         super().read_from_file_general(file)
-        self.wayToCreate = wayToCreate(int(file.readline()))
+        self.way_to_create = WayToCreate(int(file.readline()))
 
     def record_to_file(self, file):
         super().record_to_file_general(file)
         file.write("Мультфильм\n")
-        if self.wayToCreate == wayToCreate.drawn:
+        if self.way_to_create == WayToCreate.drawn:
             file.write("Рисованный\n")
-        if self.wayToCreate == wayToCreate.puppet:
+        if self.way_to_create == WayToCreate.puppet:
             file.write("Кукольный\n")
-        if self.wayToCreate == wayToCreate.plasticine:
+        if self.way_to_create == WayToCreate.plasticine:
             file.write("Пластилиновый\n")
         file.write('\n') 
+
 
 class Doсumentary(Film):
     def __init__(self):
@@ -85,7 +88,8 @@ class Doсumentary(Film):
         file.write(f"Год: {self.year}\n")
         file.write('\n')            
 
-class wayToCreate(Enum):
+
+class WayToCreate(Enum):
     drawn = 1
     puppet = 2
     plasticine = 3

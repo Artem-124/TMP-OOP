@@ -1,13 +1,13 @@
 from Film import Film
 
 class Array:
-    def __init__(self, maxSize):
+    def __init__(self, max_size):
         self.size = 0
         self.content = []
-        self.maxSize = maxSize
+        self.max_size = max_size
 
     def append(self, element):
-        if self.size < self.maxSize:
+        if self.size < self.max_size:
             self.size += 1
             self.content.append(element)
         else:
@@ -53,4 +53,4 @@ class Array:
 
 
 def comparator(a, b):
-    return a.number_of_voves() > b.number_of_voves() 
+    return a.number_of_vowels() > b.number_of_vowels() 
