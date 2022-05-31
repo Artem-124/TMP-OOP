@@ -3,6 +3,7 @@ from enum import Enum
 class Film:
     def __init__(self):
         self.title = ''
+        self.country = ''
 
     @staticmethod
     def get_from_file(type, file):
@@ -15,9 +16,15 @@ class Film:
         film.read_from_file(file) 
         return film
     
-    def record_to_file(self, file):
-        pass
-   
+    def read_from_file_general(self, file):
+        self.title = file.readline()
+        self.country = file.readline()
+
+    def record_to_file_general(self, file):
+        file.write(self.title)
+        file.write(f"Страна: {self.country}")
+        file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
+
     def number_of_voves(self):
         voves = 'аеёиоуыэюя'
         num = 0
@@ -32,14 +39,13 @@ class Feature(Film):
         self.director = ""
 
     def read_from_file(self, file):
-        self.title = file.readline()
+        super().read_from_file_general(file)
         self.director = file.readline()
 
     def record_to_file(self, file):
-        file.write(self.title)
+        super().record_to_file_general(file)
         file.write("Художественный фильм\n")
         file.write(f"Режиссер: {self.director}")
-        file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
         file.write('\n') 
 
 class Cartoon(Film):
@@ -48,11 +54,11 @@ class Cartoon(Film):
         self.wayToCreate = None
 
     def read_from_file(self, file):
-        self.title = file.readline()
+        super().read_from_file_general(file)
         self.wayToCreate = wayToCreate(int(file.readline()))
 
     def record_to_file(self, file):
-        file.write(self.title)
+        super().record_to_file_general(file)
         file.write("Мультфильм\n")
         if self.wayToCreate == wayToCreate.drawn:
             file.write("Рисованный\n")
@@ -60,7 +66,6 @@ class Cartoon(Film):
             file.write("Кукольный\n")
         if self.wayToCreate == wayToCreate.plasticine:
             file.write("Пластилиновый\n")
-        file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
         file.write('\n') 
 
 class Doсumentary(Film):
@@ -69,14 +74,13 @@ class Doсumentary(Film):
         self.year = 1900
 
     def read_from_file(self, file):
-        self.title = file.readline()
+        super().read_from_file_general(file)
         self.year = int(file.readline())
 
     def record_to_file(self, file):
-        file.write(self.title)
+        super().record_to_file_general(file)
         file.write("Документальный фильм\n")
         file.write(f"Год: {self.year}\n")
-        file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
         file.write('\n')            
 
 class wayToCreate(Enum):
