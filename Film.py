@@ -10,6 +10,8 @@ class Film:
             film = Feature() 
         if type == 2:
             film = Cartoon()
+        if type == 3:
+            film = Doсumentary()
         film.read_from_file(file) 
         return film
     
@@ -60,6 +62,21 @@ class Cartoon(Film):
             file.write("Пластилиновый\n")
         file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
         file.write('\n') 
+
+class Doсumentary:
+    def __init__(self):
+        super().__init__()
+        self.year = 1900
+
+    def read_from_file(self, file):
+        self.title = file.readline()
+        self.year = int(file.readline())
+
+    def record_to_file(self, file):
+        file.write(self.title)
+        file.write("Документальный фильм\n")
+        file.write(f"Год: {self.year}\n")
+        file.write('\n')            
 
 class wayToCreate(Enum):
     drawn = 1
