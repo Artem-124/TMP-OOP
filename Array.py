@@ -32,7 +32,7 @@ class Array:
     def sort(self):
         for j in range(1, self.size):
             for i in range(self.size - j):
-                if self.content[i].number_of_voves() > self.content[i + 1].number_of_voves():
+                if comparator(self.content[i], self.content[i + 1]):
                     self.content[i], self.content[i + 1] = self.content[i + 1], self.content[i]
     
     def only_one_type_record_to_file(self, file, type):
@@ -50,3 +50,7 @@ class Array:
             file.write(f"\nЗаписано {num} фильма\n")
         if num >= 5:
             file.write(f"\nЗаписано {num} фильмов\n")
+
+
+def comparator(a, b):
+    return a.number_of_voves() > b.number_of_voves() 
