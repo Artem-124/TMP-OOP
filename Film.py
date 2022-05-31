@@ -63,7 +63,7 @@ class Cartoon(Film):
         file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
         file.write('\n') 
 
-class Doсumentary:
+class Doсumentary(Film):
     def __init__(self):
         super().__init__()
         self.year = 1900
@@ -76,6 +76,7 @@ class Doсumentary:
         file.write(self.title)
         file.write("Документальный фильм\n")
         file.write(f"Год: {self.year}\n")
+        file.write(f"Количество гласных в названии: {self.number_of_voves()}\n")
         file.write('\n')            
 
 class wayToCreate(Enum):
