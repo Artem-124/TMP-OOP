@@ -11,7 +11,7 @@ else:
     outfile = sys.argv[2]
 
 infile = open(infile, 'r', encoding = "utf-8")
-a = Array(12)
+a = Array(15)
 a.fill(infile)
 print(f"В контейнер записано {a.size} фильмов\n")
 infile.close()
@@ -30,9 +30,9 @@ outfile.write('    ║ Отсортированный контейнер ║\n')
 outfile.write('    ╚═══════════════════════════╝\n\n')
 a.record_to_file(outfile)
 
-outfile.write('    ╔═════════════════════════════════╗\n')
-outfile.write('    ║ Отфильтрованныйванный контейнер ║\n')
-outfile.write('    ╚═════════════════════════════════╝\n\n')
+outfile.write('    ╔═══════════════════════════╗\n')
+outfile.write('    ║ Отфильтрованный контейнер ║\n')
+outfile.write('    ╚═══════════════════════════╝\n\n')
 a.only_one_type_record_to_file(outfile, 2) #0 - вывод всех типов
 
 outfile.close()
