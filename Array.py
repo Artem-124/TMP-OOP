@@ -15,7 +15,7 @@ class Array:
 
     def clear(self):
         self.size = 0
-        self.data = []
+        self.content = []
 
     def fill(self, file):
         type = file.readline()
